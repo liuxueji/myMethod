@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./call.js"></script>
+  <script src="./bind.js"></script>
+</head>
+
+<body>
+  <script>
+    // 声明一个函数
+    function add(a, b) {
+      console.log(this)
+      return a + b + this.c
+    }
+    // 声明一个对象
+    let obj = {
+      c: 2
+    }
+    // 添加全局属性
+    window.c = 3
+    // 定义bind函数
+    let fn1 = bind(add, obj, 10, 20)
+    let fn2 = bind(add, obj)
+    let fn3 = add.bind(obj, 10, 20)
+    // 执行bind函数
+    console.log(fn1()) // 32 
+    console.log(fn2(30, 40)) // 72 
+    console.log(fn3(50, 60)) // 32 此时运算时只是跟前面的实参有关系与这里的无关。
+  </script>
+</body>
+
+</html>
