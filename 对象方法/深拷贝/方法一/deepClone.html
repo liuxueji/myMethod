@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./deepClone.js"></script>
+</head>
+
+<body>
+  <script>
+    const obj = {
+      a: 1,
+      b: ['q', 'm'],
+      c: {
+        d: 1
+      },
+      // JSON 不能克隆方法
+      e: function () {}
+    }
+    // 循环引用
+    obj.b.push(obj.c.j)
+    obj.c.j = obj.b
+    // 深拷贝
+    const result = deepClone(obj)
+
+    // 修改新数据的属性值
+    // result.c.d = 2
+    console.log(obj) // 原数据保存不变
+    console.log(result)
+  </script>
+</body>
+
+</html>
